@@ -38,7 +38,10 @@
     {
       "Sid": "InvalidateFrontendCache",
       "Effect": "Allow",
-      "Action": "cloudfront:CreateInvalidation",
+      "Action": [
+        "cloudfront:CreateInvalidation",
+        "cloudfront:GetInvalidation"
+      ],
       "Resource": "arn:aws:cloudfront::054154173007:distribution/E3S8KIH6MT79JC"
     }
   ]
