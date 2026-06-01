@@ -47,6 +47,6 @@ jobs:
               < mysql_schema.sql
 
             echo "Restart backend"
-            docker restart shopverse-backend
+            pm2 restart shopverse-backend
 
             echo "Manual DB migration completed"
