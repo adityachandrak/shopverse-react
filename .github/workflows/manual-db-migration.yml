@@ -1,0 +1,45 @@
+name: Manual Database Migration
+
+on:
+  workflow_dispatch:
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run safe database migration on EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            set -e
+
+            echo "Go to backend folder"
+            cd /opt/shopverse-backend
+
+            echo "Load environment variables"
+            set -a
+            source .env
+            set +a
+
+            echo "Backup database"
+            mkdir -p /home/ubuntu/db-backups
+
+            mysqldump \
+              -h "$DB_HOST" \
+              -P "$DB_PORT" \
+              -u "$DB_USER" \
+              -p"$DB_PASSWORD" \
+              "$DB_NAME" \
+              > /home/ubuntu/db-backups/shopverse_backup_$(date +%F_%H-%M-%S).sql
+
+            echo "Run migration"
+            npm run migrate
+
+            echo "Restart backend"
+            docker restart shopverse-backend
+
+            echo "Manual DB migration completed"
