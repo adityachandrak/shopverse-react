@@ -159,7 +159,7 @@ jobs:
 
       - name: Detect SQL migrations
         run: |
-          MIGRATIONS=$(find migrations -type f -name '*.sql' -print | sort)
+          MIGRATIONS=$(find migrations backend/migrations -type f -name '*.sql' -print 2>/dev/null | sort)
           if [ -z "$MIGRATIONS" ]; then
             echo "No SQL migration files detected."
             exit 0

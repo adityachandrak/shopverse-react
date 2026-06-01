@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
+    "migrate": "node scripts/apply-migrations.js",
     "migrate:customer-information": "node scripts/migrate-customer-information.js",
     "start": "node server.js",
     "test": "node --test"
