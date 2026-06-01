@@ -38,7 +38,13 @@ jobs:
               > /home/ubuntu/db-backups/shopverse_backup_$(date +%F_%H-%M-%S).sql
 
             echo "Run migration"
-            npm run migrate
+            mysql \
+              -h "$DB_HOST" \
+              -P "$DB_PORT" \
+              -u "$DB_USER" \
+              -p"$DB_PASSWORD" \
+              "$DB_NAME" \
+              < mysql_schema.sql
 
             echo "Restart backend"
             docker restart shopverse-backend
