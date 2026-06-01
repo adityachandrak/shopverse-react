@@ -19,7 +19,7 @@ jobs:
             set -e
 
             echo "Go to backend folder"
-            cd /opt/shopverse-backend
+            cd /home/ubuntu/shopverse-backend
 
             echo "Load environment variables"
             set -a
