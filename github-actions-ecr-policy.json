@@ -43,6 +43,21 @@
         "cloudfront:GetInvalidation"
       ],
       "Resource": "arn:aws:cloudfront::054154173007:distribution/E3S8KIH6MT79JC"
+    },
+    {
+      "Sid": "DeployBackendWithSystemsManager",
+      "Effect": "Allow",
+      "Action": "ssm:SendCommand",
+      "Resource": [
+        "arn:aws:ec2:ap-south-1:054154173007:instance/i-074c26a847d8054b1",
+        "arn:aws:ssm:ap-south-1::document/AWS-RunShellScript"
+      ]
+    },
+    {
+      "Sid": "ReadBackendDeploymentStatus",
+      "Effect": "Allow",
+      "Action": "ssm:GetCommandInvocation",
+      "Resource": "*"
     }
   ]
 }
