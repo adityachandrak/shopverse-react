@@ -13,7 +13,6 @@ dist-ssr
 *.local
 .migration-backup/
 shopverse-new-terraform-frontend/
-Untitled/
 AWSCLIV2.pkg
 
 # Editor directories and files

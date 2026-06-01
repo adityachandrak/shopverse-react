@@ -18,6 +18,28 @@
         "ecr:UploadLayerPart"
       ],
       "Resource": "arn:aws:ecr:ap-south-1:054154173007:repository/shopverse-web"
+    },
+    {
+      "Sid": "ListFrontendBucket",
+      "Effect": "Allow",
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::shopverse-new-frontend-054154173007-20260531"
+    },
+    {
+      "Sid": "DeployFrontendObjects",
+      "Effect": "Allow",
+      "Action": [
+        "s3:DeleteObject",
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Resource": "arn:aws:s3:::shopverse-new-frontend-054154173007-20260531/*"
+    },
+    {
+      "Sid": "InvalidateFrontendCache",
+      "Effect": "Allow",
+      "Action": "cloudfront:CreateInvalidation",
+      "Resource": "arn:aws:cloudfront::054154173007:distribution/E3S8KIH6MT79JC"
     }
   ]
 }
